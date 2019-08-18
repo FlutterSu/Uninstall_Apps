@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     
-        await UninstallApps.uninstall("com.instagram.android");
+        await UninstallApps.uninstall("com.facebook.lite");
 
   }
 
