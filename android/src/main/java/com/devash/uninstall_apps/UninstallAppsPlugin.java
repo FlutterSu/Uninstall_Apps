@@ -42,11 +42,13 @@ public class UninstallAppsPlugin implements MethodCallHandler {
      
      if(call.method.equals("Uninstall")){
      
-           String appPackage = call.argument("App");
-           Intent intent = new Intent(activity, activity.getClass());
-           PendingIntent sender = PendingIntent.getActivity(activity, 0, intent, 0);
-           PackageInstaller mPackageInstaller = activity.getPackageManager().getPackageInstaller();
-           mPackageInstaller.uninstall(appPackage, sender.getIntentSender());
+          String app = call.argument("App");
+      
+          Intent intent = new Intent(Intent.ACTION_DELETE);
+          intent.setData(Uri.parse("package:"+app));
+          intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      
+           activity.startActivity(intent);
      }
     
     else {
