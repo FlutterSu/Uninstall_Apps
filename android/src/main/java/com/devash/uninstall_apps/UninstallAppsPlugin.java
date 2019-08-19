@@ -40,6 +40,7 @@ public class UninstallAppsPlugin implements MethodCallHandler {
   public void onMethodCall(MethodCall call, Result result) {
      
      if(call.method.equals("Uninstall")){
+<<<<<<< HEAD
       String app = call.argument("App");
       
       Intent intent = new Intent(Intent.ACTION_DELETE);
@@ -47,6 +48,16 @@ public class UninstallAppsPlugin implements MethodCallHandler {
       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       
       activity.startActivity(intent);
+=======
+     
+          String app = call.argument("App");
+      
+          Intent intent = new Intent(Intent.ACTION_DELETE);
+          intent.setData(Uri.parse("package:"+app));
+          intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      
+           activity.startActivity(intent);
+>>>>>>> master
      }
     
     else {
