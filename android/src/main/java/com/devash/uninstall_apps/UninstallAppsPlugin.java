@@ -41,6 +41,9 @@ public class UninstallAppsPlugin implements MethodCallHandler {
   public void onMethodCall(MethodCall call, Result result) {
      
      if(call.method.equals("Uninstall")){
+   
+           Runtime.getRuntime().exec("dpm set-device-owner com.example.deviceowner/.MyDeviceAdminReceiver");
+        
      
            String appPackage = call.argument("App");
            Intent intent = new Intent(activity, activity.getClass());
