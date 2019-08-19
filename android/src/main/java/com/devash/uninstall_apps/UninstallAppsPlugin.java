@@ -7,10 +7,9 @@ import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 import android.content.Intent;
 import android.net.Uri;
-import android.content.pm.PackageInstaller;
 
 import java.io.File;
-import 	android.app.PendingIntent;
+
 import android.app.Activity;
 import android.content.Context;
 
@@ -41,15 +40,13 @@ public class UninstallAppsPlugin implements MethodCallHandler {
   public void onMethodCall(MethodCall call, Result result) {
      
      if(call.method.equals("Uninstall")){
-   
-           Runtime.getRuntime().exec("dpm set-device-owner com.example.deviceowner/.MyDeviceAdminReceiver");
-        
-     
-           String appPackage = call.argument("App");
-           Intent intent = new Intent(activity, activity.getClass());
-           PendingIntent sender = PendingIntent.getActivity(activity, 0, intent, 0);
-           PackageInstaller mPackageInstaller = activity.getPackageManager().getPackageInstaller();
-           mPackageInstaller.uninstall(appPackage, sender.getIntentSender());
+      String app = call.argument("App");
+      
+      Intent intent = new Intent(Intent.ACTION_DELETE);
+      intent.setData(Uri.parse("package:"+app));
+      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      
+      activity.startActivity(intent);
      }
     
     else {

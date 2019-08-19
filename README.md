@@ -1,6 +1,6 @@
 # uninstall_apps
 
-Plugin for uninstall apps in andoid
+A new flutter plugin project.
 
 ## Getting Started
 
